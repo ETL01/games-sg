@@ -1,245 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="games">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>games.sg — Gaming & Interactive Entertainment | Singapore</title>
-<meta name="description" content="Independent coverage of gaming, esports, and interactive entertainment in Singapore and ASEAN.">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>games.sg — Gaming, Esports & Interactive Entertainment | Singapore &amp; ASEAN</title>
+<meta name="description" content="Coverage of gaming, esports, and interactive entertainment across Singapore and ASEAN." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg: #0a0f14;
-    --bg-subtle: #111921;
-    --text: #e8ecf0;
-    --text-muted: #8899a8;
+  /* Reset & variables */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --bg: #071018;
+    --surface: #0f1720;
+    --text: #e8eef6;
+    --muted: #9aa9b6;
     --accent: #ff6b3d;
-    --accent-dim: rgba(255, 107, 61, 0.12);
-    --border: rgba(136, 153, 168, 0.15);
+    --accent-dim: rgba(255,107,61,0.08);
+    --border: rgba(255,255,255,0.04);
+    --card: rgba(255,255,255,0.02);
+    --radius: 10px;
+    --max-width: 720px;
   }
 
-  html { font-size: 16px; }
-
+  html { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size: 16px; color-scheme: dark; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
     min-height: 100vh;
+    background: linear-gradient(180deg,var(--bg), #07121a 60%);
+    color: var(--text);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+    padding: 3rem 1.25rem;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+  /* subtle grid */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
     background-image:
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.4;
-    pointer-events: none;
+    background-size:72px 72px;
+    opacity:0.26;
+    pointer-events:none;
   }
 
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
+  /* top accent */
+  body::after{
+    content:"";
+    position:fixed;
+    top:0; left:0; right:0;
+    height:3px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity:0.95;
   }
 
-  .container {
-    max-width: 620px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    animation: fadeUp 0.8s ease-out;
+  .wrap{
+    width:100%;
+    max-width:var(--max-width);
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:2.25rem;
+    box-shadow: 0 10px 30px rgba(2,6,12,0.6);
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  header[role="banner"]{ display:grid; gap:0.6rem; align-items:start; }
+
+  .badge{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--accent-dim);
+    padding:0.28rem 0.7rem;
+    border-radius:999px;
+    border:1px solid rgba(255,107,61,0.12);
+    width:fit-content;
   }
 
-  .badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-dim);
-    padding: 0.35rem 0.85rem;
-    border-radius: 2px;
-    margin-bottom: 1.8rem;
-    border: 1px solid rgba(255, 107, 61, 0.2);
+  .brand{ display:flex; gap:0.9rem; align-items:center; margin-top:0.45rem; }
+
+  .glyph{
+    width:44px; height:44px; display:inline-grid; place-items:center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    border-radius:10px; border:1px solid var(--border);
+  }
+  .glyph svg{ width:22px; height:22px; display:block; color:var(--accent); }
+
+  .wordmark{
+    font-family:'DM Serif Display', serif;
+    font-size:2.6rem;
+    line-height:1;
+    color:var(--text);
+    letter-spacing:-0.02em;
+  }
+  .wordmark span{ color:var(--accent); }
+
+  .tagline{
+    font-size:1rem;
+    color:var(--muted);
+    margin-top:0.25rem;
   }
 
-  .wordmark {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3.5rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 0.3rem;
-    color: var(--text);
+  .divider{
+    width:56px; height:6px; border-radius:4px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), var(--accent));
+    margin:1.25rem 0 1.6rem;
+    opacity:0.95;
   }
 
-  .wordmark span {
-    color: var(--accent);
+  .description{
+    color:var(--muted);
+    font-size:0.98rem;
+    line-height:1.7;
+    max-width:64ch;
+    margin-bottom:1.6rem;
   }
 
-  .tagline {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    margin-bottom: 2.2rem;
-    line-height: 1.5;
+  .cred{
+    color:var(--muted);
+    font-size:0.92rem;
+    margin-top:0.45rem;
   }
 
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--accent);
-    margin-bottom: 2.2rem;
-    opacity: 0.6;
+  .quick-links{
+    display:flex; gap:0.6rem; margin-top:1rem; flex-wrap:wrap;
+  }
+  .quick-links a{
+    font-size:0.88rem; text-decoration:none; background:var(--card);
+    padding:0.45rem 0.8rem; border-radius:10px; border:1px solid rgba(255,255,255,0.02);
+    color:var(--muted); transition: all 180ms ease;
+  }
+  .quick-links a:hover{ color:var(--accent); transform:translateY(-3px); box-shadow:0 8px 20px rgba(255,107,61,0.06); }
+
+  .contact-row{ display:flex; gap:0.8rem; margin-top:1.6rem; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:0.6rem;
+    padding:0.62rem 1rem; font-size:0.95rem; border-radius:10px;
+    text-decoration:none; border:1px solid var(--border); cursor:pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .btn.primary{
+    background: linear-gradient(180deg,var(--accent), #ff5a2a);
+    color:#071018; border:none; box-shadow:0 10px 30px rgba(255,107,61,0.12); font-weight:600;
+  }
+  .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 18px 40px rgba(255,107,61,0.16); }
+
+  .btn.ghost{ background:transparent; color:var(--muted); border:1px solid var(--border); }
+  .btn.ghost:hover{ color:var(--accent); transform:translateY(-2px); border-color: rgba(255,107,61,0.12); }
+
+  .network{
+    margin-top:2.2rem; display:flex; gap:1rem; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; background:rgba(255,255,255,0.01); padding:0.7rem; border-radius:10px; border:1px solid rgba(255,255,255,0.02);
+  }
+  .network .label{ font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; opacity:0.8; }
+  .network .links{ display:flex; gap:0.8rem; align-items:center; flex-wrap:wrap; }
+  .network .links a{ color:var(--muted); text-decoration:none; font-size:0.9rem; opacity:0.9; }
+  .network .links a:hover{ color:var(--accent); opacity:1; }
+
+  footer{
+    margin-top:1.6rem; font-size:0.78rem; color:var(--muted);
+    display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap;
+  }
+  .legal{ opacity:0.7; }
+  .privacy{ color:var(--muted); text-decoration:none; border-bottom:1px dashed rgba(255,255,255,0.02); padding-bottom:2px; }
+  .privacy:hover{ color:var(--accent); border-color: rgba(255,107,61,0.12); }
+
+  @media (max-width:640px){
+    body{ padding:2rem 1rem; }
+    .wrap{ padding:1.6rem; border-radius:10px; }
+    .wordmark{ font-size:2rem; }
+    .divider{ width:48px; height:5px; }
+    .brand{ gap:0.6rem; }
   }
 
-  .description {
-    font-size: 0.92rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-link {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: all 0.25s ease;
-  }
-
-  .contact-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--accent-dim);
-  }
-
-  .network-label {
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-top: 3.5rem;
-  }
-
-  .network-links {
-    margin-top: 0.6rem;
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-  }
-
-  .network-links a {
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.25s ease, color 0.25s ease;
-  }
-
-  .network-links a:hover {
-    opacity: 1;
-    color: var(--accent);
-  }
-
-  .network-links span {
-    color: var(--border);
-    font-size: 0.7rem;
-  }
-
-  .network-links span.coming-soon {
-    font-style: italic;
-    opacity: 0.4;
-    font-size: 0.75rem;
-  }
-
-  footer {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    opacity: 0.35;
-    letter-spacing: 0.04em;
-  }
-
-  @media (max-width: 480px) {
-    .wordmark { font-size: 2.5rem; }
-    .tagline { font-size: 0.95rem; }
-    body { padding: 1.5rem; }
-  }
+  a:focus, .btn:focus{ outline:3px solid rgba(255,107,61,0.12); outline-offset:3px; border-radius:10px; }
 </style>
 </head>
 <body>
+  <main class="wrap" role="main" aria-labelledby="site-title">
+    <header role="banner" aria-label="games.sg header">
+      <div class="badge" aria-hidden="true">Coming Soon</div>
 
-<div class="container">
-  <div class="badge">Coming Soon</div>
-  <div class="wordmark">games<span>.sg</span></div>
+      <div class="brand" style="margin-top:0.6rem;">
+        <div class="glyph" aria-hidden="true" title="Games glyph">
+          <!-- simple gamepad glyph -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 12c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v1c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2v-1z" fill="currentColor" opacity="0.12"/>
+            <circle cx="9.5" cy="12.5" r="0.9" fill="currentColor" opacity="0.22"/>
+            <path d="M15.5 11.6h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          </svg>
+        </div>
 
-  <p class="tagline">
-    Singapore’s Gaming, Esports & Interactive Entertainment Hub
-  </p>
+        <div>
+          <div id="site-title" class="wordmark">games<span>.sg</span></div>
+          <div class="tagline">Gaming, Esports &amp; Interactive Entertainment — Singapore &amp; ASEAN</div>
+        </div>
+      </div>
 
-  <div class="divider"></div>
+      <div class="divider" role="presentation" aria-hidden="true"></div>
+    </header>
 
-  <p class="description">
-    Games.sg highlights the people, studios, events, and ideas shaping Singapore’s gaming ecosystem. From indie creators to esports arenas, this project is dedicated to the culture and business of play. We curate insights, showcase local talent, and map the growth of interactive entertainment across the region.
-  </p>
+    <section aria-labelledby="about-heading">
+      <p id="about-heading" class="description">
+        Games.sg highlights the people, studios, events, and ideas shaping the region’s gaming ecosystem. From indie creators to competitive esports, this project focuses on the culture and business of play across Singapore and ASEAN — curated insights, local spotlights, and a practical view of industry trends.
+      </p>
 
-  <div class="contact-row">
-    <a href="mailto:ops@usformco.com" class="contact-link">Get in Touch</a>
-    <a href="mailto:ops@usformco.com?subject=Subscribe%20-%20games.sg" class="contact-link">Subscribe for Updates</a>
-  </div>
+      <p class="cred">Independent. Practical perspectives for creators, operators, and industry partners.</p>
 
-  <div class="network-label">Editorial Network</div>
-  <div class="network-links">
-    <a href="https://block.sg">block.sg</a>
-    <span>&middot;</span>
-    <span class="coming-soon">Additional properties coming soon</span>
-  </div>
-</div>
+      <nav class="quick-links" aria-label="Quick links">
+        <a href="#studios">Studios</a>
+        <a href="#events">Events</a>
+        <a href="#insights">Industry Insights</a>
+      </nav>
 
-<footer>&copy; 2026 US Form Co LLC</footer>
+      <div class="contact-row" role="navigation" aria-label="Contact">
+        <a class="btn primary" href="mailto:ops@usformco.com?subject=Inquiry%20-%20games.sg" title="Contact games.sg">Get in Touch</a>
+        <a class="btn ghost" href="mailto:ops@usformco.com?subject=Subscribe%20-%20games.sg" title="Subscribe for updates">Subscribe for Updates</a>
+      </div>
+    </section>
 
+    <aside class="network" aria-label="Editorial network">
+      <div class="label">Editorial Network</div>
+      <div class="links">
+        <a href="https://block.sg">block.sg</a>
+        <span style="color:var(--muted); font-size:0.82rem; opacity:0.7;">&middot; Additional sites coming soon</span>
+      </div>
+    </aside>
+
+    <footer>
+      <div class="legal">&copy; <span id="year">2026</span> US Form Co LLC</div>
+      <div><a class="privacy" href="/privacy.html" rel="noopener">Privacy &amp; contact</a></div>
+    </footer>
+  </main>
+
+  <script>
+    (function(){ try{ document.getElementById('year').textContent = new Date().getFullYear(); }catch(e){} })();
+  </script>
 </body>
 </html>
